@@ -26,7 +26,7 @@ public class PacketOpenBaublesInventory implements IMessage, IMessageHandler<Pac
 		IThreadListener mainThread = (WorldServer) ctx.getServerHandler().playerEntity.world; 
         mainThread.addScheduledTask(new Runnable(){ public void run() { 	
         	ctx.getServerHandler().playerEntity.openContainer.onContainerClosed(ctx.getServerHandler().playerEntity);		
-			ctx.getServerHandler().playerEntity.openGui(Baubles.instance, Baubles.GUI, ctx.getServerHandler().playerEntity.world, (int)ctx.getServerHandler().playerEntity.posX, (int)ctx.getServerHandler().playerEntity.posY, (int)ctx.getServerHandler().playerEntity.posZ);
+			ctx.getServerHandler().playerEntity.openGui(Baubles.instance, Baubles.GUI, ctx.getServerHandler().playerEntity.world, 0, 0, 0);
 		}});
 		return null;
 	}
