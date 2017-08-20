@@ -22,8 +22,8 @@ public class GuiBaublesButton extends GuiButton {
 	
 	@Override
 	public boolean mousePressed(Minecraft mc, int mouseX, int mouseY) {
-		int potionShift = getPotionShift(mc);
-		return super.mousePressed(mc, mouseX - potionShift, mouseY);
+		int positionShift = getPositionShift(mc);
+		return super.mousePressed(mc, mouseX - positionShift, mouseY);
 	}
 
 
@@ -33,13 +33,13 @@ public class GuiBaublesButton extends GuiButton {
     {
         if (this.visible)
         {
-        	int potionShift = getPotionShift(mc);
+        	int positionShift = getPositionShift(mc);
         	
             FontRenderer fontrenderer = mc.fontRendererObj;
             mc.getTextureManager().bindTexture(GuiPlayerExpanded.background);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            this.hovered = xx >= this.xPosition + potionShift && yy >= this.yPosition && 
-            		xx < this.xPosition + this.width + potionShift && yy < this.yPosition + this.height;
+            this.hovered = xx >= this.xPosition + positionShift && yy >= this.yPosition && 
+            		xx < this.xPosition + this.width + positionShift && yy < this.yPosition + this.height;
             int k = this.getHoverState(this.hovered);
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
@@ -47,11 +47,11 @@ public class GuiBaublesButton extends GuiButton {
             
             
             if (k==1) {
-            	this.drawTexturedModalRect(this.xPosition + potionShift, this.yPosition, 200, 48, 10, 10);	
+            	this.drawTexturedModalRect(this.xPosition + positionShift, this.yPosition, 200, 48, 10, 10);	
             } else {
-            	this.drawTexturedModalRect(this.xPosition + potionShift, this.yPosition, 210, 48, 10, 10);
+            	this.drawTexturedModalRect(this.xPosition + positionShift, this.yPosition, 210, 48, 10, 10);
             	this.drawCenteredString(fontrenderer, I18n.format(this.displayString, new Object[0]),
-            			this.xPosition + 5 + potionShift, this.yPosition + this.height, 0xffffff);
+            			this.xPosition + 5 + positionShift, this.yPosition + this.height, 0xffffff);
             }
             
             this.mouseDragged(mc, xx, yy);
@@ -60,7 +60,7 @@ public class GuiBaublesButton extends GuiButton {
         }
     }
 
-	private int getPotionShift(Minecraft mc) {
+	private int getPositionShift(Minecraft mc) {
 		if (mc.currentScreen instanceof GuiContainer) {
 			GuiContainer guiContainer = (GuiContainer) mc.currentScreen;
 			return guiContainer.guiLeft - this.guiLeft;
